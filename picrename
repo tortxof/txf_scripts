@@ -1,0 +1,4 @@
+for i in *.$1
+do mv -v "$i" $(picdates "$i").${1,,}
+done
+

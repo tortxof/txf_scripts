@@ -1,0 +1,15 @@
+# Checks all files recursively from current directory if they have SHA1 embedded in their filename
+
+# Use find to return all filenames recursively.
+# Use grep to filter out filenames without sums.
+for file in $(find -type f -not -iname '*.thm' | egrep '[[:xdigit:]]{40}')
+
+# Extract sum from filename.
+do sumStored=$(echo $file | egrep -o '[[:xdigit:]]{40}')
+
+# Pipe sum and filename to sha1sum to do the checking.
+# This spawns one sha1sum instance for each file. Not efficient.
+# Need to compile all files together and calll sha1sum only once.
+# Would like to do this without creating temporary file.
+echo "$sumStored  $file" | sha1sum -c --quiet -
+done

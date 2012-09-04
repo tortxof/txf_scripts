@@ -1,0 +1,7 @@
+# renumber image sequence starting at 1
+
+x=1
+for i in *.$1
+do mv -v "$i" $(printf %08d $x).$1
+((x++))
+done

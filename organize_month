@@ -1,0 +1,8 @@
+for i in *.jpg
+do date=${i:0:7}
+if [ ! -d $date ]
+then mkdir "$date"
+fi
+mv -v "$i" "$date"
+done
+

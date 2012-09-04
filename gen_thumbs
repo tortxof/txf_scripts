@@ -1,0 +1,2 @@
+# Generate thumbnail index for all jpg files in current directory
+montage -size 512x512 '*.jpg[128x128]' -auto-orient -geometry +4+4 -tile 6x index.jpg
