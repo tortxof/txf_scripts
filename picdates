@@ -2,11 +2,12 @@
 
 # run exif program to extract date and time. grep single line we need.
 # exif=($(exif -t 0x0132 "$1" | grep Value))
-exif=($(jhead "$1" | grep Date/Time))
+# exif=($(jhead "$1" | grep Date/Time))
+exif=($(exiv2 "$1" | grep timestamp))
 
 # separate date and time into their own variables
-date=${exif[2]}
-time=${exif[3]}
+date=${exif[3]}
+time=${exif[4]}
 
 # replace colons with dashes
 date=${date//:/-}
