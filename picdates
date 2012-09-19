@@ -29,4 +29,4 @@ fi
 sha1=($(sha1sum "$1"))
 
 # output resulting filename without extension
-echo $date.$time.$sha1
+echo $date.$time.${sha1:0:8}
