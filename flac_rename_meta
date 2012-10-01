@@ -1,0 +1,16 @@
+# Read tags from flac files and rename.
+
+for i in *.flac
+do :
+
+track=$(metaflac --show-tag=tracknumber "$i")
+track=${track#*=}
+track=${track%/*}
+track=$(printf %02d $track)
+
+title=$(metaflac --show-tag=title "$i")
+title=${title#*=}
+
+mv -v "$i" "$track.$title.flac"
+
+done
