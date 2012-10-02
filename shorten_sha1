@@ -1,0 +1,17 @@
+# Find files in current directory containing sha1 hashes, and truncate the hashes.
+
+# Length of sum in new file names.
+newlength=8
+
+# Get list of files with sha1 sum in name.
+files=$(find -maxdepth 1 | egrep '[[:xdigit:]]{40}')
+
+for file in $files
+do :
+# Extract sum from filename.
+sum=$(echo $file | egrep -o '[[:xdigit:]]{40}')
+# Use sed to substitute truncated sum.
+newfile=$(echo $file | sed s/$sum/${sum:0:$newlength}/)
+# Rename file.
+mv -v $file $newfile
+done
