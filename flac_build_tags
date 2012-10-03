@@ -1,0 +1,14 @@
+read -p "Album: " album
+read -p "Artist: " artist
+tracks=$(wc -l < discography.txt)
+x=1
+
+for i in *.flac
+do tagfile=${i%.flac}.tag
+title=$(sed -n ${x}p discography.txt)
+echo "artist=$artist" > $tagfile
+echo "album=$album" >> $tagfile
+echo "tracknumber=$x/$tracks" >> $tagfile
+echo "title=$title" >> $tagfile
+((x++))
+done
