@@ -2,14 +2,21 @@
 
 # Use find to return all filenames recursively.
 # Use grep to filter out filenames without sums.
-for file in $(find -type f -not -iname '*.thm' | egrep '[[:xdigit:]]{40}')
+for file in $(find -type f -not -iname '*.thm' -not -iname '*.log' | egrep '[[:xdigit:]]{8}')
 
 # Extract sum from filename.
-do sumStored=$(echo $file | egrep -o '[[:xdigit:]]{40}')
+do sumStored=$(echo $file | egrep -o '[[:xdigit:]]{8}')
 
 # Pipe sum and filename to sha1sum to do the checking.
 # This spawns one sha1sum instance for each file. Not efficient.
 # Need to compile all files together and calll sha1sum only once.
 # Would like to do this without creating temporary file.
-echo "$sumStored  $file" | sha1sum -c --quiet -
+sumRead=($(sha1sum $file))
+sumRead=${sumRead:0:8}
+if [ $sumRead == $sumStored ]
+then
+echo "$file good"
+else
+echo "$file failed"
+fi
 done
