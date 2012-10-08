@@ -15,7 +15,7 @@ sumRead=($(sha1sum $file))
 sumRead=${sumRead:0:8}
 if [ $sumRead == $sumStored ]
 then
-echo "$file good"
+:
 else
 echo "$file failed"
 fi
