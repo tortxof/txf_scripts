@@ -10,6 +10,8 @@ track=$(printf %02d $track)
 
 title=$(metaflac --show-tag=title "$i")
 title=${title#*=}
+# Remove slashes from title
+title=${title//\//-}
 
 mv -v "$i" "$track.$title.flac"
 
