@@ -1,0 +1,24 @@
+# Read tags from mp3 files and rename.
+# Adapted from flac_rename_meta.
+
+for i in *.mp3
+do :
+
+track=$(avconv -i "$i" 2>&1 | grep '^    track')
+track=${track#*: }
+track=${track%/*}
+track=$(printf %02d $track)
+
+title=$(avconv -i "$i" 2>&1 | grep title)
+title=${title#*: }
+# Remove slashes from title
+title=${title//\//-}
+
+artist=$(avconv -i "$i" 2>&1 | grep artist)
+artist=${artist#*: }
+# Remove slashes
+artist=${artist//\//-}
+
+mv -v "$i" "$track.$title.$artist.mp3"
+
+done
