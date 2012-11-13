@@ -1,0 +1,25 @@
+#!/bin/bash
+# Convert music library to ogg
+
+src=/local/media/audio/music/
+dst=~/music.ogg/
+aq=3
+filetypes="flac m4a mp3"
+
+cd $src
+
+for filetype in $filetypes
+do
+for i in $(find -not -type d | grep "\.$filetype$")
+do
+
+if [ ! -a ${dst}${i%$filetype}ogg ]
+then
+mkdir -p ${dst}${i%/*}
+avconv -i $i -c:a libvorbis -aq $aq ${dst}${i%$filetype}ogg
+fi
+
+# list files loop
+done
+# filetype loop
+done
