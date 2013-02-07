@@ -1,0 +1,9 @@
+while true
+do
+x=$(head -c 512K | base64)
+if [ -z "$x" ]
+then
+exit 0
+fi
+echo "$x" | base64 -d | openssl dgst -sha1 -binary
+done
