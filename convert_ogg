@@ -3,7 +3,7 @@
 
 src=/local/media/audio/music/
 dst=~/music.ogg/
-aq=3
+aq=2
 filetypes="flac m4a mp3"
 
 cd $src
