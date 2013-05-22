@@ -1,0 +1,11 @@
+# This script lists all directories that don't have sub-directories.
+# First, find lists all directories with 2 links. The two links are from the parent directory and '.' inside the directory itself.
+# If a directory has any sub-directories, it will have more than 2 links because of the '..' in the sub-directory.
+# grep is used to filter out the .git directory if you use this in a repo.
+# The while read loop echos each line minus the leading './'.
+# Finally, the results are sorted.
+
+find -type d -links 2 \
+| grep -v '^\./\.git' \
+| while read line; do echo "${line:2}"; done \
+| sort
