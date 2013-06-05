@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Watch current directory for changes and auto annex and commit them.
+
+while [ true ]; do
+inotifywait -r -e modify -e move -e delete .
+git annex add .
+git commit -am "auto"
+done
