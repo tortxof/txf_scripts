@@ -3,7 +3,7 @@
 # Watch current directory for changes and auto commit them.
 
 while [ true ]; do
-inotifywait -r --exclude '^\./\.' -t 300 -e modify -e move -e delete .
+inotifywait -r --exclude '^\./\.' -e modify -e move -e delete .
 sleep 10s
 git add .
 git commit -am "auto"
