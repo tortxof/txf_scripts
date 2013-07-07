@@ -6,5 +6,6 @@ prereqs="git gitk git-annex libav-tools vorbis-tools flac imagemagick gnupg2 pwg
 othersoftware="byobu gimp inkscape audacious audacity ubuntu-restricted-addons ubuntu-restricted-extras ttf-mscorefonts-installer- jekyll openssh-server samba samba-tools hugin hugin-tools qtpfsgui fonts-linuxlibertine libcdio-utils mplayer detox colorhug-client gnome-color-manager"
 
 sudo apt-get update
+sudo apt-get dist-upgrade
 sudo apt-get install $prereqs
 sudo apt-get install $othersoftware
