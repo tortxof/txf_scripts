@@ -1,1 +1,1 @@
-gpg2 -o - -d ~/backup/passwords-current.txt.gpg | grep $1
+gpg2 -o - -d ~/private/passwords.txt.gpg | grep $1
