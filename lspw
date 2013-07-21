@@ -1,1 +1,7 @@
-gpg2 -o - -d ~/private/passwords.txt.gpg | grep $1
+if [ -e "$HOME/private/passwords.txt.gpg" ]
+then
+pwfile="$HOME/private/passwords.txt.gpg"
+else
+pwfile="$HOME/backup/passwords-current.txt.gpg"
+fi
+gpg2 -o - -d $pwfile | grep $1
