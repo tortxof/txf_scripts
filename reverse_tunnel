@@ -1,0 +1,11 @@
+#! /bin/bash
+
+# Forwards a port from remote server back to local machine.
+# Useful for later accessing machine from home (server).
+
+while [ true ]
+do
+ssh -NR 2222:localhost:22 djones.co
+echo "Waiting one minute before reconnecting."
+sleep 1m
+done
