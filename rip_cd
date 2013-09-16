@@ -1,9 +1,9 @@
 #! /bin/bash
 # Rips CD to current directory and encodes to flac
 
-cd-paranoia -B
+cd-paranoia $@ -B
 sha1sum *.wav > wav.sha1sum
-cd-paranoia -B
+cd-paranoia $@ -B
 sha1sum -c wav.sha1sum
 read -n1 -r -p "Press any key if checksums are OK."
 echo
