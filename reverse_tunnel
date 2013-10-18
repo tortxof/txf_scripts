@@ -3,9 +3,12 @@
 # Forwards a port from remote server back to local machine.
 # Useful for later accessing machine from home (server).
 
+host="djones.co"
+
 while [ true ]
 do
-ssh -NR 2222:localhost:22 djones.co
+echo "Connecting."
+ssh -NR 2222:localhost:22 $host
 echo "Waiting one minute before reconnecting."
 sleep 1m
 done
