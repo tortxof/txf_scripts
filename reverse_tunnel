@@ -7,6 +7,7 @@ host="djones.co"
 
 while [ true ]
 do
+date '+%F %T'
 echo "Connecting."
 ssh -NR 2222:localhost:22 $host
 echo "Waiting one minute before reconnecting."
