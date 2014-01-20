@@ -7,9 +7,9 @@ host="djones.co"
 
 while [ true ]
 do
-date '+%F %T'
+date
 echo "Connecting."
-ssh -NR 2222:localhost:22 $host
+ssh -R 2222:localhost:22 $host 'while :; do echo Keepalive: $(date); sleep 30s; done'
 echo "Waiting one minute before reconnecting."
 sleep 1m
 done
