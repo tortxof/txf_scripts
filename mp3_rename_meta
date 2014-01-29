@@ -4,21 +4,25 @@
 for i in *.mp3
 do :
 
-track=$(avconv -i "$i" 2>&1 | grep '^    track')
+track=$(id3v2 -R "$i" | grep  '^TRCK')
 track=${track#*: }
 track=${track%/*}
 track=$(printf %02d $track)
 
-title=$(avconv -i "$i" 2>&1 | grep title)
+disc=$(id3v2 -R "$i" | grep  '^TPOS')
+disc=${disc#*: }
+disc=${disc%/*}
+
+title=$(id3v2 -R "$i" | grep '^TIT2')
 title=${title#*: }
 # Remove slashes from title
 title=${title//\//-}
 
-artist=$(avconv -i "$i" 2>&1 | grep artist)
+artist=$(id3v2 -R "$i" | grep '^TPE2')
 artist=${artist#*: }
 # Remove slashes
 artist=${artist//\//-}
 
-mv -v "$i" "$track.$title.$artist.mp3"
+mv -v "$i" "${disc}${track}.${title}.mp3"
 
 done
