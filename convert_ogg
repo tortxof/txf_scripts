@@ -4,22 +4,35 @@
 src=~/music/
 dst=~/music.ogg/
 aq=3
-filetypes="flac m4a mp3"
+convert_types="flac"
+copy_types="mp3 m4a"
 
 cd $src
 
-for filetype in $filetypes
+for filetype in $convert_types
 do
-for i in $(find -not -type d | grep "\.$filetype$")
+for i in $(find -not -type d -iname "*.$filetype")
 do
 
 if [[ ! -a ${dst}${i%$filetype}ogg ]]
-then
-mkdir -p ${dst}${i%/*}
-avconv -i $i -c:a libvorbis -aq $aq ${dst}${i%$filetype}ogg
+    then
+    mkdir -p ${dst}${i%/*}
+    avconv -i $i -c:a libvorbis -aq $aq ${dst}${i%$filetype}ogg
 fi
 
-# list files loop
-done
-# filetype loop
-done
+done # list files loop
+done # filetype loop
+
+for filetype in $copy_types
+do
+for i in $(find -not -type d -iname "*.$filetype")
+do
+
+if [[ ! -a ${dst}${i} ]]
+    then
+    mkdir -p ${dst}${i%/*}
+    cp -v $i ${dst}${i}
+fi
+
+done # list files loop
+done # filetype loop
