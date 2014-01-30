@@ -3,9 +3,9 @@
 
 src=~/music/
 dst=~/music.ogg/
-aq=3
-convert_types="flac"
-copy_types="mp3 m4a"
+aq=2
+convert_types="flac mp3 m4a"
+copy_types=""
 
 cd $src
 
