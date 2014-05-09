@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# install common desktop software.
+
+prereqs="gimp inkscape audacious audacity ubuntu-restricted-addons ubuntu-restricted-extras hugin hugin-tools qtpfsgui fonts-linuxlibertine libcdio-utils mplayer colorhug-client gnome-color-manager"
+
+sudo apt-get update
+sudo apt-get dist-upgrade
+sudo apt-get install $prereqs
