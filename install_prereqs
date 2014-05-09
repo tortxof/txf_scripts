@@ -2,7 +2,7 @@
 
 # install programs required for scripts to work, and other common software.
 
-prereqs="git gitk git-annex libav-tools vorbis-tools flac id3v2 imagemagick gnupg2 pwgen exiv2 inotify-tools nfs-common xclip sqlite3 smartmontools postfix byobu jekyll ruby-redcarpet ruby-rdiscount openssh-server samba samba-tools detox"
+prereqs="git gitk git-annex libav-tools vorbis-tools flac id3v2 imagemagick gnupg2 pwgen exiv2 inotify-tools nfs-common xclip sqlite3 smartmontools postfix byobu openssh-server samba samba-tools detox"
 othersoftware="gimp inkscape audacious audacity ubuntu-restricted-addons ubuntu-restricted-extras hugin hugin-tools qtpfsgui fonts-linuxlibertine libcdio-utils mplayer colorhug-client gnome-color-manager"
 
 sudo apt-get update
