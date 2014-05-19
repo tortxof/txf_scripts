@@ -1,0 +1,2 @@
+sudo gem install compass --pre
+sudo gem install susy breakpoint therubyracer jekyll
