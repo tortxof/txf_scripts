@@ -2,7 +2,7 @@
 
 # install programs required for scripts to work, and other common software.
 
-prereqs="whois git gitk git-annex libav-tools vorbis-tools flac id3v2 imagemagick gnupg2 pwgen exiv2 inotify-tools nfs-common xclip sqlite3 smartmontools postfix mutt byobu openssh-server samba detox build-essential ruby ruby-dev libsqlite3-dev"
+prereqs="whois git-core gitk git-annex libav-tools vorbis-tools flac id3v2 imagemagick gnupg2 pwgen exiv2 inotify-tools nfs-common xclip sqlite3 smartmontools postfix mutt byobu openssh-server samba detox build-essential ruby ruby-dev libsqlite3-dev"
 
 sudo apt-get update
 sudo apt-get dist-upgrade

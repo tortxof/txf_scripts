@@ -1,0 +1,14 @@
+#! /bin/bash
+repo_dir=repo
+mkdir $repo_dir
+find -type f | while read line
+do sum=($(sha1sum "$line"))
+sum=${sum[0]}
+if [ -e $repo_dir/$sum ]
+then
+rm "$line"
+cp -lv $repo_dir/$sum "$line"
+else
+cp -lv "$line" $repo_dir/$sum
+fi
+done
