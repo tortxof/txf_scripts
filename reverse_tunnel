@@ -3,7 +3,7 @@
 # Forwards a port from remote server back to local machine.
 # Useful for later accessing machine from home (server).
 
-host="djones.co"
+host="sol.djones.co"
 
 while [ true ]
 do
