@@ -17,7 +17,7 @@ do
 if [[ ! -a ${dst}${i%$filetype}ogg ]]
     then
     mkdir -p ${dst}${i%/*}
-    avconv -i $i -c:a libvorbis -aq $aq ${dst}${i%$filetype}ogg
+    avconv -i $i -vn -c:a libvorbis -aq $aq ${dst}${i%$filetype}ogg
 fi
 
 done # list files loop
