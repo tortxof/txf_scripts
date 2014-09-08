@@ -12,7 +12,7 @@ do
 if [[ ! -a ${dst}${i%flac}m4a ]]
     then
     mkdir -p ${dst}${i%/*}
-    avconv -i $i -vn -c:a aac -b:a 128k ${dst}${i%flac}m4a
+    avconv -i $i -vn -c:a aac -b:a 128k -strict experimental ${dst}${i%flac}m4a
 fi
 
 done
