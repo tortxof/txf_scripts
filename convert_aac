@@ -1,0 +1,18 @@
+#!/bin/bash
+# Convert flac music library to aac for itunes
+
+src=~/music/
+dst=~/music.aac/
+
+cd $src
+
+for i in $(find -not -type d -iname "*.flac")
+do
+
+if [[ ! -a ${dst}${i%flac}m4a ]]
+    then
+    mkdir -p ${dst}${i%/*}
+    avconv -i $i -vn -c:a aac -b:a 128k ${dst}${i%flac}m4a
+fi
+
+done
