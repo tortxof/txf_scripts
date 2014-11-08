@@ -1,11 +1,13 @@
+#!/bin/bash
+
 if [ -z $2 ]
-then
-echo "Usage: $0 src_profile dst"
-exit
+  then
+  echo "Usage: $0 src_profile dst"
+  exit
 fi
 dirs="Contacts Desktop Documents Music Pictures Videos Downloads Favorites"
 for i in $dirs
 do
-rsync -rvP $1/$i $2/${1##*/}/
+  rsync -rvP "$1/$i" "$2/${1##*/}/"
 done
-rsync -vP $1/* $2/${1##*/}/
+rsync -vP "$1/"* "$2/${1##*/}/"
