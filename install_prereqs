@@ -2,10 +2,40 @@
 
 # install programs required for scripts to work, and other common software.
 
-prereqs="whois git-core git-annex libav-tools vorbis-tools opus-tools flac id3v2 imagemagick gnupg2 pwgen exiv2 inotify-tools nfs-common sqlite3 smartmontools postfix mutt byobu openssh-server samba detox build-essential python3-pip ruby ruby-dev libsqlite3-dev htop"
+read -d '' packages <<EOF
+ntp
+whois
+git-core
+git-annex
+libav-tools
+vorbis-tools
+opus-tools
+flac
+id3v2
+imagemagick
+gnupg2
+pwgen
+exiv2
+inotify-tools
+nfs-common
+sqlite3
+libsqlite3-dev
+smartmontools
+postfix
+mutt
+byobu
+openssh-server
+samba
+detox
+build-essential
+python3-pip
+ruby
+ruby-dev
+htop
+EOF
 
 sudo apt-get update
 sudo apt-get dist-upgrade
-sudo apt-get install $prereqs
+sudo apt-get install $packages
 
 sudo pip3 install virtualenv
