@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# install programs required for scripts to work, and other common software.
+# Install programs required for scripts to work, and other common software.
 
 read -d '' packages <<EOF
 ntp
