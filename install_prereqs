@@ -5,6 +5,7 @@
 read -d '' packages <<EOF
 netcat
 pv
+unzip
 iperf
 ntp
 whois
