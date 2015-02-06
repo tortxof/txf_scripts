@@ -1,9 +1,28 @@
 #!/bin/bash
 
-# install common desktop software.
+# Install common desktop software.
 
-prereqs="gitk xclip gimp inkscape audacious audacity ubuntu-restricted-addons ubuntu-restricted-extras hugin hugin-tools qtpfsgui fonts-linuxlibertine libcdio-utils mplayer colorhug-client gnome-color-manager xchat chromium-browser"
+read -d '' packages <<EOF
+gitk
+xclip
+gimp
+inkscape
+audacious
+audacity
+ubuntu-restricted-addons
+ubuntu-restricted-extras
+hugin
+hugin-tools
+qtpfsgui
+fonts-linuxlibertine
+libcdio-utils
+mplayer
+colorhug-client
+gnome-color-manager
+xchat
+chromium-browser
+EOF
 
 sudo apt-get update
 sudo apt-get dist-upgrade
-sudo apt-get install $prereqs
+sudo apt-get install $packages

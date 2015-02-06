@@ -1,7 +1,9 @@
+#!/bin/bash
+
 if [ -z $2 ]
-then
-echo "Usage: $0 src_profile dst"
-exit
+  then
+  echo "Usage: $0 src_profile dst"
+  exit
 fi
 dirs="Contacts Desktop Documents Music Pictures Videos Downloads Favorites"
 for i in $dirs

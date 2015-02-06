@@ -1,2 +1,14 @@
-sudo gem install compass --pre
-sudo gem install susy breakpoint therubyracer jekyll timetrap
+#!/bin/bash
+
+# Install ruby gems needed for web development.
+
+read -d '' gems <<EOF
+compass
+susy
+breakpoint
+therubyracer
+jekyll
+timetrap
+EOF
+
+sudo gem install $gems
