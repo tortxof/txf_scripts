@@ -12,7 +12,7 @@ print(flac_files)
 
 if len(flac_files) == len(info['tracks']):
     for i in range(len(info['tracks'])):
-        with open(flac_files[i].strip('.flac') + '.tag', 'w') as f:
+        with open(flac_files[i].split('.flac')[0] + '.tag', 'w') as f:
             print('artist={}'.format(info['artist']), file=f)
             print('album={}'.format(info['album']), file=f)
             print('tracknumber={}/{}'.format(i+1, len(info['tracks'])), file=f)
