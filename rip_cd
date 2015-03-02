@@ -5,9 +5,9 @@ cd-paranoia $@ -B
 flac --best *.wav
 ls
 pwd
-read -n1 -r -p "Press any key when discography.txt is ready."
+read -n1 -r -p "Press any key when info.json is ready."
 echo
-flac_build_tags
+flac_build_tags.py
 flac_import_tags
 flac_rename_meta
 detox *
