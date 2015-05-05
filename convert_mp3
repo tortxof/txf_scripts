@@ -1,11 +1,10 @@
 #!/bin/bash
-# Convert music library to ogg
+# Convert music library to mp3
 
 src=~/music/
-dst=~/music.ogg/
-aq=1
-convert_types="flac mp3 m4a"
-copy_types=""
+dst=~/music.mp3/
+convert_types="flac m4a"
+copy_types="mp3"
 
 cd $src
 
@@ -14,10 +13,10 @@ do
   for i in $(find -not -type d -iname "*.$filetype")
   do
 
-    if [[ ! -a ${dst}${i%$filetype}ogg ]]
+    if [[ ! -a ${dst}${i%$filetype}mp3 ]]
       then
       mkdir -p ${dst}${i%/*}
-      avconv -i $i -vn -c:a libvorbis -aq $aq ${dst}${i%$filetype}ogg
+      avconv -i $i -vn -c:a libmp3lame ${dst}${i%$filetype}mp3
     fi
 
   done # list files loop
