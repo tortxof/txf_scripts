@@ -4,7 +4,10 @@
 
 read -d '' packages <<EOF
 netcat
+curl
+wget
 pv
+tree
 unzip
 iperf
 ntp
@@ -29,17 +32,11 @@ postfix
 mutt
 byobu
 openssh-server
-samba
 detox
 build-essential
-python3-pip
-ruby
-ruby-dev
 htop
 EOF
 
 sudo apt-get update
 sudo apt-get dist-upgrade
 sudo apt-get install $packages
-
-sudo pip3 install virtualenv

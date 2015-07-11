@@ -7,20 +7,16 @@ gitk
 xclip
 gimp
 inkscape
+clementine
 audacious
 audacity
-ubuntu-restricted-addons
-ubuntu-restricted-extras
 hugin
 hugin-tools
 qtpfsgui
 fonts-linuxlibertine
 libcdio-utils
 mplayer
-colorhug-client
-gnome-color-manager
 xchat
-chromium-browser
 EOF
 
 sudo apt-get update
