@@ -32,6 +32,7 @@ postfix
 mutt
 byobu
 openssh-server
+avahi-daemon
 detox
 build-essential
 htop
