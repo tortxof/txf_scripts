@@ -1,8 +1,8 @@
 ext_list="THM LOG LRV"
 for i in *.$1
-do newname=$(movdates $i)
-mv -v $i $newname.${1,,}
+do newname=$(movdates "$i")
+mv -v "$i" $newname.${1,,}
 for ext in $ext_list
-do mv -v ${i%$1}$ext $newname.${ext,,}
+do mv -v "${i%$1}$ext" $newname.${ext,,}
 done
 done
