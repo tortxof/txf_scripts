@@ -3,4 +3,4 @@ docker run -ti --rm -u $(id -u):$(id -g) \
 -v $(pwd):/host -v /etc/passwd:/etc/passwd:ro \
 -v /etc/group:/etc/group:ro -v /etc/sudoers:/etc/sudoers:ro \
 --net host \
-$1 $2
+$@
