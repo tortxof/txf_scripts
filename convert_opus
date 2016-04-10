@@ -1,0 +1,22 @@
+#!/bin/bash
+# Convert music library to ogg
+
+src=~/music/
+dst=~/music.opus/
+convert_types="flac mp3 m4a"
+
+cd $src
+
+for filetype in $convert_types
+do
+  for i in $(find -not -type d -iname "*.$filetype")
+  do
+
+    if [[ ! -a ${dst}${i%$filetype}opus ]]
+      then
+      mkdir -p ${dst}${i%/*}
+      avconv -i $i -vn -c:a libopus -b:a 64k ${dst}${i%$filetype}opus
+    fi
+
+  done # list files loop
+done # filetype loop
