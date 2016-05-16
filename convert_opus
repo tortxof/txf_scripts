@@ -15,7 +15,7 @@ do
     if [[ ! -a ${dst}${i%$filetype}opus ]]
       then
       mkdir -p ${dst}${i%/*}
-      avconv -i $i -vn -c:a libopus -b:a 64k ${dst}${i%$filetype}opus
+      avconv -i $i -vn -c:a libopus -b:a 96k ${dst}${i%$filetype}opus
     fi
 
   done # list files loop
