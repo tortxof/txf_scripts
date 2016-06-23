@@ -1,3 +1,4 @@
-nc -l 9100 > tmp.ps
-sed -e "/mark currentfile eexec/,/cleartomark/ d" tmp.ps > clean.ps
-ps2pdf clean.ps $(date +%F-%H-%M-%S-%N).pdf
+DATE=$(date +%F-%H-%M-%S-%N)
+nc -l 9100 > $DATE.raw.ps
+sed -e "/mark currentfile eexec/,/cleartomark/ d" $DATE.raw.ps > $DATE.clean.ps
+ps2pdf $DATE.clean.ps $DATE.pdf
