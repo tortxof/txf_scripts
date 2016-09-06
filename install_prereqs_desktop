@@ -3,20 +3,15 @@
 # Install common desktop software.
 
 read -d '' packages <<EOF
-gitk
 xclip
 gimp
 inkscape
 clementine
 audacious
 audacity
-hugin
-hugin-tools
-qtpfsgui
 fonts-linuxlibertine
 libcdio-utils
 mplayer
-xchat
 EOF
 
 sudo apt-get update
