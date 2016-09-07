@@ -3,6 +3,17 @@
 
 src=~/music/
 dst=~/music.mp3/
+
+if [ ! -z $1 ]
+then
+  src=$1
+fi
+
+if [ ! -z $2 ]
+then
+  dst=$2
+fi
+
 convert_types="flac m4a"
 copy_types="mp3"
 

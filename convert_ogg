@@ -3,6 +3,17 @@
 
 src=~/music/
 dst=~/music.ogg/
+
+if [ ! -z $1 ]
+then
+  src=$1
+fi
+
+if [ ! -z $2 ]
+then
+  dst=$2
+fi
+
 aq=1
 convert_types="flac mp3 m4a"
 copy_types=""
