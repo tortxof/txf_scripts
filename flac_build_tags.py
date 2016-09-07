@@ -31,12 +31,10 @@ if type(info) == dict:
         print('Error: Number of tracks.')
 elif type(info) == list:
     if len(flac_files) == len(info):
-        i = 1
-        for track in zip(flac_files, info):
-            with open(track[0].split('.flac')[0] + '.tag', 'w') as f:
-                print('artist={}'.format(track[1][0]), file=f)
-                print('title={}'.format(track[1][1]), file=f)
-                print('tracknumber={}/{}'.format(i, len(info)), file=f)
-            i += 1
+        for i, (filename, track) in enumerate(zip(flac_files, info)):
+            with open(filename.split('.flac')[0] + '.tag', 'w') as f:
+                print('artist={}'.format(track['artist']), file=f)
+                print('title={}'.format(track['title']), file=f)
+                print('tracknumber={}/{}'.format(i+1, len(info)), file=f)
     else:
         print('Error: Number of tracks.')
