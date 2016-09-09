@@ -35,6 +35,7 @@ openssh-server
 detox
 build-essential
 htop
+p7zip-full
 EOF
 
 sudo apt-get update
