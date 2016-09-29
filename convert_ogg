@@ -16,7 +16,7 @@ fi
 
 aq=1
 convert_types="flac mp3 m4a"
-copy_types=""
+copy_types="jpg png"
 
 cd $src
 

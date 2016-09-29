@@ -15,6 +15,7 @@ then
 fi
 
 convert_types="flac mp3 m4a"
+copy_types="jpg png"
 
 cd $src
 
@@ -27,6 +28,20 @@ do
       then
       mkdir -p ${dst}${i%/*}
       avconv -i $i -vn -c:a libopus -b:a 96k ${dst}${i%$filetype}opus
+    fi
+
+  done # list files loop
+done # filetype loop
+
+for filetype in $copy_types
+do
+  for i in $(find -not -type d -iname "*.$filetype")
+  do
+
+    if [[ ! -a ${dst}${i} ]]
+      then
+      mkdir -p ${dst}${i%/*}
+      cp -v $i ${dst}${i}
     fi
 
   done # list files loop
