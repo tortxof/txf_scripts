@@ -2,5 +2,7 @@ docker run -ti --rm -u $(id -u):$(id -g) \
 -e HOME -v $HOME:$HOME \
 -v $(pwd):/host -v /etc/passwd:/etc/passwd:ro \
 -v /etc/group:/etc/group:ro -v /etc/sudoers:/etc/sudoers:ro \
+--group-add dialout \
+--device /dev/ttyUSB0 \
 --net host \
 tortxof/webdev $@
