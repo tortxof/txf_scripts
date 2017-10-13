@@ -1,0 +1,4 @@
+ATOM_DL=$(mktemp -d)
+curl -L -o $ATOM_DL/atom.deb https://atom.io/download/deb
+sudo dpkg -i $ATOM_DL/atom.deb
+rm -r $ATOM_DL
