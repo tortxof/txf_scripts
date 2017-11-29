@@ -2,5 +2,6 @@ DL_DIR=$(mktemp -d)
 curl -L -o $DL_DIR/postman.tar.gz https://dl.pstmn.io/download/latest/linux64
 sudo rm -rf /opt/Postman
 sudo tar -xzf $DL_DIR/postman.tar.gz -C /opt
+sudo rm /usr/bin/postman
 sudo ln -s /opt/Postman/Postman /usr/bin/postman
 rm -rf $DL_DIR
