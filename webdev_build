@@ -1,0 +1,2 @@
+docker build --pull --no-cache -t tortxof/ruby-node https://github.com/tortxof/docker-ruby-node.git \
+&& docker build --no-cache -t tortxof/webdev https://github.com/tortxof/docker-webdev.git
