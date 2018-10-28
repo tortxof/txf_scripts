@@ -15,7 +15,7 @@ then
 fi
 
 convert_types="flac m4a"
-copy_types="mp3"
+copy_types="mp3 jpg png"
 
 cd $src
 
@@ -27,7 +27,7 @@ do
     if [[ ! -a ${dst}${i%$filetype}mp3 ]]
       then
       mkdir -p ${dst}${i%/*}
-      avconv -i $i -vn -c:a libmp3lame ${dst}${i%$filetype}mp3
+      ffmpeg -i $i -vn -c:a libmp3lame ${dst}${i%$filetype}mp3
     fi
 
   done # list files loop
