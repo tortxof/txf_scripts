@@ -1,1 +1,1 @@
-sudo apt-get update && sudo apt-get dist-upgrade -y && sudo apt-get autoremove -y
+sudo apt update && sudo apt -y full-upgrade && sudo apt -y autoremove
