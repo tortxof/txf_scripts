@@ -21,7 +21,7 @@ cd $src
 
 for filetype in $convert_types
 do
-  for i in $(find -not -type d -iname "*.$filetype")
+  for i in $(find -path ./.git -prune -o -not -type d -iname "*.$filetype")
   do
 
     if [[ ! -a ${dst}${i%$filetype}opus ]]
@@ -35,7 +35,7 @@ done # filetype loop
 
 for filetype in $copy_types
 do
-  for i in $(find -not -type d -iname "*.$filetype")
+  for i in $(find -path ./.git -prune -o -not -type d -iname "*.$filetype")
   do
 
     if [[ ! -a ${dst}${i} ]]
