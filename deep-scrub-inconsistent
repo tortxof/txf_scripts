@@ -1,0 +1,5 @@
+for pool in solfs_data solfs_metadata; do
+    for pg in $(sudo rados list-inconsistent-pg $pool | jq -r 'join(" ")'); do
+        sudo ceph pg deep-scrub $pg;
+    done
+done
