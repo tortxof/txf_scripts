@@ -3,11 +3,12 @@
 # run exif program to extract date and time. grep single line we need.
 # exif=($(exif -t 0x0132 "$1" | grep Value))
 # exif=($(jhead "$1" | grep Date/Time))
-exif=($(avconv -i "$1" 2>&1 | grep -m 1 creation_time))
+exif=($(ffmpeg -i "$1" 2>&1 | grep -m 1 creation_time))
+exif=${exif[2]}
 
 # separate date and time into their own variables
-date=${exif[2]}
-time=${exif[3]}
+date=${exif:0:10}
+time=${exif:11:8}
 
 # replace colons with dashes
 date=${date//:/-}
