@@ -1,18 +1,40 @@
 # Read tags from flac files and rename.
 
+INCLUDE_ARTIST=0
+
+while [[ $# -gt 0 ]]
+do
+    key=$1
+    case "$key" in
+        -a|--artist)
+            INCLUDE_ARTIST=1
+            shift
+        ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+        ;;
+    esac
+done
+
 for i in *.flac
-do :
+do
+    track=$(metaflac --show-tag=tracknumber "$i")
+    track=${track#*=}
+    track=${track%/*}
+    track=$(printf %02d $track)
 
-track=$(metaflac --show-tag=tracknumber "$i")
-track=${track#*=}
-track=${track%/*}
-track=$(printf %02d $track)
+    title=$(metaflac --show-tag=title "$i")
+    title=${title#*=}
+    title=$(echo "$title" | inline-detox)
 
-title=$(metaflac --show-tag=title "$i")
-title=${title#*=}
-# Remove slashes from title
-title=${title//\//-}
-
-mv -v "$i" "$track.$title.flac"
-
+    if [[ $INCLUDE_ARTIST -gt 0 ]]
+    then
+        artist=$(metaflac --show-tag=artist "$i")
+        artist=${artist#*=}
+        artist=$(echo "$artist" | inline-detox)
+        mv -vn "$i" "$track.$artist.$title.flac"
+    else
+        mv -vn "$i" "$track.$title.flac"
+    fi
 done
