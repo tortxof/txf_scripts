@@ -1,40 +1,67 @@
 #! /usr/bin/env python3
 
-import os
-import glob
 import json
-import csv
+import sys
+from dataclasses import dataclass
+from pathlib import Path
 
-if os.path.isfile('info.json'):
-    with open('info.json') as f:
+
+@dataclass
+class Track:
+    title: str
+    artist: str | None
+    album: str | None
+    track_number: int
+    total_tracks: int | None
+    file: Path
+
+
+try:
+    with open("info.json") as f:
         info = json.load(f)
+except FileNotFoundError:
+    print("File info.json not found. Writing info.json template.")
+    with open("info.json", "w") as f:
+        json.dump({"artist": None, "album": None, "tracks": ["", ""]}, f, indent=4)
 
-if os.path.isfile('info.csv'):
-    with open('info.csv', newline='') as f:
-        info = []
-        for row in csv.reader(f, delimiter=',', quotechar='"'):
-            info.append(row)
+    sys.exit(1)
 
-flac_files = glob.glob('*.flac')
-flac_files.sort()
-print(flac_files)
+flac_files = sorted(Path(".").glob("*.flac"))
 
-if type(info) == dict:
-    if len(flac_files) == len(info['tracks']):
-        for i in range(len(info['tracks'])):
-            with open(flac_files[i].split('.flac')[0] + '.tag', 'w') as f:
-                print('artist={}'.format(info['artist']), file=f)
-                print('album={}'.format(info['album']), file=f)
-                print('tracknumber={}/{}'.format(i+1, len(info['tracks'])), file=f)
-                print('title={}'.format(info['tracks'][i]), file=f)
+default_artist = info.get("artist")
+default_album = info.get("album")
+num_tracks = len(info["tracks"])
+
+tracks: list[Track] = []
+for track_number, (file, track) in enumerate(
+    zip(flac_files, info["tracks"], strict=True), start=1
+):
+    if isinstance(track, str):
+        track = {"title": track}
+
+    tracks.append(
+        Track(
+            title=track["title"],
+            artist=track.get("artist", default_artist),
+            album=track.get("album", default_album),
+            track_number=track_number,
+            total_tracks=num_tracks,
+            file=file,
+        )
+    )
+
+
+for track in tracks:
+    lines = []
+    if track.artist is not None:
+        lines.append(f"artist={track.artist}")
+    if track.album is not None:
+        lines.append(f"album={track.album}")
+    if track.total_tracks is not None:
+        lines.append(f"tracknumber={track.track_number}/{track.total_tracks}")
     else:
-        print('Error: Number of tracks.')
-elif type(info) == list:
-    if len(flac_files) == len(info):
-        for i, (filename, track) in enumerate(zip(flac_files, info)):
-            with open(filename.split('.flac')[0] + '.tag', 'w') as f:
-                print('artist={}'.format(track['artist']), file=f)
-                print('title={}'.format(track['title']), file=f)
-                print('tracknumber={}/{}'.format(i+1, len(info)), file=f)
-    else:
-        print('Error: Number of tracks.')
+        lines.append(f"tracknumber={track.track_number}")
+    lines.append(f"title={track.title}")
+
+    with open(track.file.with_suffix(".tag"), "w") as f:
+        f.writelines(f"{line}\n" for line in lines)
