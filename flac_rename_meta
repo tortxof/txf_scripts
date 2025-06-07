@@ -22,6 +22,7 @@ do
     track=$(metaflac --show-tag=tracknumber "$i")
     track=${track#*=}
     track=${track%/*}
+    track=$((10#$track))
     track=$(printf %02d $track)
 
     title=$(metaflac --show-tag=title "$i")
